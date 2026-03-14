@@ -1,0 +1,490 @@
+1. React Components
+
+A React component is just a JavaScript function that returns UI (JSX).
+
+Example:
+
+function App() {
+  return (
+    <h1>Hello</h1>
+  );
+}
+
+React runs this function and displays whatever it returns.
+
+So:
+
+Component → Function → Returns UI.
+
+2. JSX (HTML inside JavaScript)
+
+React allows writing HTML-like syntax inside JavaScript.
+
+Example:
+
+return (
+  <div>
+    <h1>Hello</h1>
+  </div>
+);
+
+This is called JSX.
+
+It looks like HTML but it is actually JavaScript.
+
+3. Importing from React
+import React, { useState, useEffect } from "react";
+
+This means:
+
+Import React library
+
+Import useState
+
+Import useEffect
+
+These are built-in functions provided by React.
+
+They are called Hooks.
+
+4. React Hooks
+
+Hooks are special functions that let you use React features.
+
+Common hooks:
+
+useState
+
+Stores data inside a component.
+
+Example:
+
+const [count, setCount] = useState(0);
+
+Explanation:
+
+count → current value
+
+setCount() → function to update value
+
+0 → initial value
+
+When state changes → React re-renders the component.
+
+useEffect
+
+Used to run code after the component renders.
+
+Example:
+
+useEffect(() => {
+  console.log("Component loaded");
+}, []);
+
+The [] means:
+
+Run this only once when the component loads.
+
+Common uses:
+
+Fetch APIs
+
+Timers
+
+Event listeners
+
+5. Arrow Functions
+
+Arrow functions are a shorter way to write functions.
+
+Example:
+
+Normal function:
+
+function sayHello() {
+  console.log("Hello");
+}
+
+Arrow function:
+
+const sayHello = () => {
+  console.log("Hello");
+};
+6. Anonymous Functions
+
+A function without a name is called an anonymous function.
+
+Example:
+
+() => {
+  console.log("Hello");
+}
+
+Used when we don't need to reuse the function.
+
+Example:
+
+useEffect(() => {
+  console.log("Component loaded");
+}, []);
+7. Functions in JavaScript
+
+Functions are reusable blocks of code.
+
+Example:
+
+function greet(name) {
+  console.log("Hello " + name);
+}
+
+Call the function:
+
+greet("John");
+
+Output:
+
+Hello John
+
+Functions can:
+
+take inputs (parameters)
+
+process data
+
+return outputs
+
+8. Objects in JavaScript
+
+Objects store data in key-value pairs.
+
+Example:
+
+const user = {
+  name: "John",
+  age: 25,
+  city: "London"
+};
+
+Access values:
+
+user.name
+user.age
+
+Objects are very important because API responses are objects.
+
+9. Arrays
+
+Arrays store multiple values in order.
+
+Example:
+
+const fruits = ["apple", "banana", "mango"];
+
+Access items using index:
+
+fruits[0]
+
+Output:
+
+apple
+
+Index always starts from 0.
+
+10. Array of Objects
+
+Very common in APIs.
+
+Example:
+
+const weather = [
+  {
+    main: "Clouds",
+    description: "overcast clouds"
+  }
+];
+
+Access value:
+
+weather[0].description
+11. Event Object (e)
+
+Example:
+
+const fetchWeather = async (e) => {
+
+e is an event object.
+
+In React it is called a SyntheticEvent.
+
+It contains information about the event that occurred.
+
+Example properties:
+
+e.type
+e.target
+e.preventDefault()
+12. preventDefault()
+
+Used to stop default browser behavior.
+
+Example:
+
+e.preventDefault();
+
+Normally when a form submits:
+
+the page refreshes.
+
+React apps usually prevent this.
+
+13. Controlled Inputs
+
+Example:
+
+<input
+  type="text"
+  value={city}
+  onChange={(e) => setCity(e.target.value)}
+/>
+
+Explanation:
+
+value={city} → input value comes from state
+
+onChange → runs when user types
+
+e.target.value → current text in input
+
+Flow:
+
+User types → event triggers → value captured → stored in state.
+
+14. API Calls (fetch)
+
+Example:
+
+const response = await fetch(url);
+
+fetch() sends a request to a server.
+
+await waits until the response arrives.
+
+15. Converting API Response to JSON
+const data = await response.json();
+
+This converts the server response into a JavaScript object.
+
+Example result:
+
+{
+  name: "London",
+  main: { temp: 22 },
+  weather: [{ description: "clear sky" }]
+}
+16. Error Handling (try / catch)
+
+API calls can fail.
+
+Example:
+
+try {
+  const response = await fetch(url);
+} catch (err) {
+  console.log("Error occurred");
+}
+
+Reasons API may fail:
+
+no internet
+
+server down
+
+invalid request
+
+timeout
+
+catch prevents the app from crashing.
+
+17. finally Block
+
+Example:
+
+finally {
+  setLoading(false);
+}
+
+This runs no matter what happens.
+
+Success or error.
+
+18. HTTP Status Codes
+
+Servers return status codes.
+
+Common ones:
+
+200 → Success
+404 → Not found
+401 → Unauthorized
+500 → Server error
+
+Example:
+
+if (data.cod !== 200)
+
+Means:
+
+If request was not successful.
+
+19. API Error Response Example
+
+Example response:
+
+{
+  "cod": "404",
+  "message": "city not found"
+}
+
+Access message:
+
+data.message
+
+Example usage:
+
+setError(data.message);
+20. Conditional Rendering in React
+
+React can show UI only when conditions are true.
+
+Example:
+
+Show loading:
+
+{loading && <p>Loading...</p>}
+
+Show error:
+
+{error && <p>{error}</p>}
+
+Show weather data:
+
+{weather && !loading && (...) }
+21. Accessing Nested API Data
+
+Example API response:
+
+{
+  main: {
+    temp: 25
+  },
+  weather: [
+    {
+      description: "clear sky"
+    }
+  ]
+}
+
+Access values:
+
+Temperature:
+
+data.main.temp
+
+Weather description:
+
+data.weather[0].description
+
+Icon:
+
+data.weather[0].icon
+22. How Developers Understand API Responses
+
+3 common ways:
+
+1. console.log()
+console.log(data);
+
+Inspect the object in browser console.
+
+2. Read API documentation
+
+Example:
+
+OpenWeather documentation shows response structure.
+
+3. Test API in browser
+
+Example:
+
+https://api.openweathermap.org/data/2.5/weather?q=Delhi&appid=API_KEY
+
+This shows the JSON response directly.
+
+23. API Key
+
+An API key is a permission key to access an API.
+
+It does not contain data.
+
+It only allows your app to request data from the server.
+
+Example:
+
+appid=YOUR_API_KEY
+24. Typical React API Flow
+
+Page loads
+↓
+
+User enters city
+↓
+
+Form submit event
+↓
+
+fetchWeather() runs
+↓
+
+API request sent
+↓
+
+Response received
+↓
+
+Data stored in state
+↓
+
+React re-renders UI
+
+25. Core Skills Needed for Small React Projects
+
+1️⃣ JavaScript basics
+2️⃣ React hooks (useState, useEffect)
+3️⃣ Working with APIs
+4️⃣ Basic CSS
+
+You do not need advanced React for a simple weather app.
+
+26. Important React Concept
+
+React components re-run when state changes.
+
+Example:
+
+setWeather(data)
+
+React detects state change → re-renders component → UI updates.
+
+Key Concept to Remember
+
+Most frontend apps follow this pattern:
+
+User Input
+↓
+State Update
+↓
+API Request
+↓
+Store Response
+↓
+Render UI
